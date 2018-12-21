@@ -1,0 +1,457 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Arsclassica Article
+% LaTeX Template
+% Version 1.1 (10/6/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Lorenzo Pantieri (http://www.lorenzopantieri.net) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-------------------------------------------------------------------------------
+
+\documentclass[
+10pt, % Main document font size
+a4paper, % Paper type, use 'letterpaper' for US Letter paper
+oneside, % One page layout (no page indentation)
+%twoside, % Two page layout (page indentation for binding and different headers)
+headinclude,footinclude, % Extra spacing for the header and footer
+BCOR5mm, % Binding correction
+]{scrartcl}
+
+\input{structure.tex} % Include the structure.tex file which specified the document structure and layout
+
+\hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in words with dashes where you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop hyphenation altogether
+
+%-------------------------------------------------------------------------------
+%	TITLE AND AUTHOR(S)
+%-------------------------------------------------------------------------------
+
+\project{Métricas Estimativas}
+
+\title{\normalfont\spacedallcaps{SISTEMA PASSE-LIVRE}} % The article title
+%\title{Sistema de Apoio às Olimpíadas e Paraolimpíadas (SAPOP)} % The article title
+
+%\author{\spacedlowsmallcaps{John Smith* \& James Smith\textsuperscript{1}}} % The article author(s) - author affiliations need to be specified in the AUTHOR AFFILIATIONS block
+\author{\spacedlowsmallcaps{Jean Amaro (8532401), Wesley Tiozzo (8077925) \string& Danilo Zecchin Nery (8602430)}}
+
+\date{\today} % An optional date to appear under the author(s)
+
+%-------------------------------------------------------------------------------
+
+\begin{document}
+
+%-------------------------------------------------------------------------------
+%	HEADERS
+%-------------------------------------------------------------------------------
+
+\renewcommand{\sectionmark}[1]{\markright{\spacedlowsmallcaps{#1}}} % The header for all pages (oneside) or for even pages (twoside)
+%\renewcommand{\subsectionmark}[1]{\markright{\thesubsection~#1}} % Uncomment when using the twoside option - this modifies the header on odd pages
+\lehead{\mbox{\llap{\small\thepage\kern1em\color{halfgray} \vline}\color{halfgray}\hspace{0.5em}\rightmark\hfil}} % The header style
+
+\pagestyle{scrheadings} % Enable the headers specified in this block
+
+%-------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LISTS OF FIGURES AND TABLES
+%-------------------------------------------------------------------------------
+
+\maketitle % Print the title/author/date block
+
+\tableofcontents % Print the table of contents
+
+%\setcounter{tocdepth}{2} % Set the depth of the table of contents to show sections and subsections only
+
+%\listoffigures % Print the list of figures
+
+\listoftables % Print the list of tables
+
+%-------------------------------------------------------------------------------
+%	ABSTRACT
+%-------------------------------------------------------------------------------
+
+%\section*{Abstract} % This section will not appear in the table of contents due to the star (\section*)
+
+%-------------------------------------------------------------------------------
+%	AUTHOR AFFILIATIONS
+%-------------------------------------------------------------------------------
+
+%{\let\thefootnote\relax\footnotetext{* \textit{Department of Biology, University of Examples, London, United Kingdom}}}
+
+%{\let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{Department of Chemistry, University of Examples, London, United Kingdom}}}
+
+%-------------------------------------------------------------------------------
+
+\newpage % Start the article content on the second page, remove this if you have a longer abstract that goes onto the second page
+
+%-------------------------------------------------------------------------------
+%	INTRODUCTION
+%-------------------------------------------------------------------------------
+
+\section{Introdução}\label{intro}
+Este documento apresenta um estudo quantitativo do \textit{Sistema Passe-Livre},
+com base num documento de requisitos e num ERD (\textit{Entity-Relationship Diagram})
+fornecidos em especificação da tarefa.
+
+A seção \ref{pfloc} apresenta o processo e o resultado final dos cálculos de PF
+(\textit{Pontos por Função}) e LoC (\textit{Lines of Code}) para o sistema em
+questão, hipoteticamente implementado em linguagem Java. A seção \ref{cdq}
+apresenta os cálculos de Custo, Documentação e Qualidade para o sistema, com
+base em valores arbitrários fornecidos em especificação. A seção \ref{etd}
+apresenta os cálculos de esforço e tempo necessário para o desenvolvimento do
+sistema, com uso do modelo \textit{Cocomo Básico}.
+
+\newpage %%
+
+%-------------------------------------------------------------------------------
+%	PF + LoC
+%-------------------------------------------------------------------------------
+
+\section{Análise estimativa por PF \& LoC}\label{pfloc}
+
+Com base no MER e Documento de Requisitos disponibilizados para este
+trabalho, o grupo refletiu sobre como o sistema reagiria a cada evento.
+Assim, para que o planejamento estivesse próximo ao código final, foram
+criados os seguintes métodos para cada classe:
+\begin{itemize}[noitemsep]
+	\item proprietario 
+		\begin{itemize}[noitemsep]
+			\item \textit{adicionarGizmo}
+			\item \textit{removerGizmo}
+			\item \textit{consultarExtrato}
+		\end{itemize}
+	\item veiculo
+		\begin{itemize}[noitemsep]
+			\item \textit{adicionarGizmo}
+			\item \textit{removerGizmo}
+		\end{itemize}
+	\item tagRFID
+		\begin{itemize}[noitemsep]
+			\item \textit{ativar}
+			\item \textit{desativar}
+		\end{itemize}
+	\item sistemaFinaceiroOperadora 
+		\begin{itemize}[noitemsep]
+			\item \textit{enviarCobranca}
+			\item \textit{emitirRelatorio}
+		\end{itemize}
+	\item leitorRFID 
+		\begin{itemize}[noitemsep]
+			\item enviarCodigo
+			\item verificacaoAtivo
+		\end{itemize}
+	\item sistemaCentral 
+		\begin{itemize}[noitemsep]
+			\item \textit{verificacaoAtivo}
+			\item \textit{calculaPedagio}
+			\item \textit{gerarCobranca}
+			\item \textit{adimplir}
+			\item \textit{desamplir}
+			\item \textit{enviarAviso}
+		\end{itemize}
+	\item sensorEixos
+		\begin{itemize}[noitemsep]
+			\item \textit{carroDentro}
+		\end{itemize}
+	\item cancela 
+		\begin{itemize}[noitemsep]
+			\item \textit{abre}
+			\item \textit{fecha}
+		\end{itemize}
+\end{itemize}
+
+Para a eventual implementação de cada classe presente no diagrama,
+foram estimados os seguintes valores de linhas de código:
+\begin{itemize}[noitemsep]
+	\item 5 linhas para definição de um campo de variável (atributo,
+		vetores, objetos, etc)
+	\item 5 linhas para criação de setter deste campo
+	\item 5 linhas para criação de getter deste campo
+	\item 10 linhas para o construtor
+	\item 20 linhas para a declaração e definição de cada método
+	\item 20 linhas para a inserção de instruções em SQL, seja ela
+		\textit{hard-coded} no código-fonte, ou obtida em fontes
+		exteriores, caso haja a necessidade do método acessar o banco
+		de dados
+\end{itemize}
+
+Além disso, como fazia parte do documento de requisitos a existência de acesso
+via plataforma Web, foram estimadas as contagens de linhas de código para cada
+página (incluindo estrutura, código JavaScript, stylesheets e chamadas ao
+sistema). Considerando as informações supracitadas, observe as tabelas:
+\begin{table}[!h]
+	\begin{adjustwidth}{-1.4cm}{}
+	\begin{tabular}{p{4cm} p{2.8cm} p{2cm} p{2cm} p{1.5cm}}
+		\hline\hline
+		Classe & Métodos & Instanciação da classe & Definição/ Declaração dos métodos & Acesso ao Banco de Dados\\ 
+		\hline\hline
+		proprietario & adicionarGizmo*, removerGizmo*, consultarExtrato* & 40 & 60 & 60\\ 
+		\hline
+		atendentePosto &  & 15 &  & \\ 
+		\hline
+		postoAutorizado &  & 25 &  & \\ 
+		\hline
+		operadora &  & 25 &  & \\ 
+		\hline
+		veiculo & adicionarGizmo*, removerGizmo* & 30 & 40 & 40\\ 
+		\hline
+		tagRFID & ativar*, desativar* & 40 & 40 & 40\\ 
+		\hline
+		sistemaFinaceiroOperadora & enviarCobranca*, emitirRelatorio* & 30 & 40 & 40\\ 
+		\hline
+		leitorRFID & enviarCodigo*, verificacaoAtivo & 30 & 40 & 20\\ 
+		\hline
+		sistemaCentral & verificacaoAtivo, calculaPedagio*, gerarCobranca*, adimplir*, desamplir*, enviarAviso* & 30 & 120 & 100\\ 
+		\hline
+		pedagio &  & 50 &  & \\ 
+		\hline
+		sensorEixos & carroDentro & 30 & 20 & \\ 
+		\hline
+		rodovia &  & 20 &  & \\ 
+		\hline
+		concessionaria &  & 15 &  & \\ 
+		\hline
+		cancela & abre/fecha & 25 & 40 & \\ 
+		\hline
+		funcionario &  & 20 &  & \\ 
+		\hline
+	\hline\end{tabular}
+	\end{adjustwidth}
+	\caption{\small{Tabela de Sistemas}} 
+	\label{table:t1}
+\end{table}
+
+{\let\thefootnote\relax\footnotetext{* \textit{Métodos que dependem de um banco de dados implementado e funcional}}}
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{c c}
+		\hline\hline
+		Página & Linhas para criação da página\\ 
+		\hline\hline
+		Funcionario & 300\\ 
+		\hline
+		Cliente & 200\\ 
+		\hline
+		Tag & 100\\ 
+		\hline
+		Veiculo & 100\\ 
+		\hline
+		Administrador & 500\\ 
+		\hline
+		Analista Financeiro & 300\\ 
+		\hline
+	\hline\end{tabular}
+	\caption{\small{Tabela de Plataforma Web}} 
+	\label{table:t2}
+\end{table}
+
+\newpage %%
+
+Foi utilizada métrica orientada função para esse trabalo. Sendo assim,
+foram seguidos os três passos estudados em aula, presentes nos slides:
+\begin{table}[!h]
+	\begin{adjustwidth}{-1.1cm}{}
+	\begin{tabular}{l | c | c c c | c}
+		\hline\hline
+		\multicolumn{1}{r}{ } & \multicolumn{1}{c}{Contagem} & Tipo & Contagem & \multicolumn{1}{c}{Peso} & Resultado\\ 
+		\hline\hline
+		\multirow{3}{*}{Entradas Externas} & \multirow{3}{*}{10} & Simples & 10 & 3 & \multirow{3}{*}{30}\\ 
+		\cline{3-5}
+		&  & Média & 0 & 4 & \\ 
+		\cline{3-5}
+		&  & Complexa & 0 & 6 & \\ 
+		\hline
+		\multirow{3}{*}{Saídas Externas} & \multirow{3}{*}{6} & Simples & 4 & 4 & \multirow{3}{*}{26}\\ 
+		\cline{3-5}
+		&  & Média & 2 & 5 & \\ 
+		\cline{3-5}
+		&  & Complexa & 0 & 7 & \\ 
+		\hline
+		\multirow{3}{*}{Consultas Externas} & \multirow{3}{*}{2} & Simples & 0 & 3 & \multirow{3}{*}{8}\\ 
+		\cline{3-5}
+		&  & Média & 2 & 4 & \\ 
+		\cline{3-5}
+		&  & Complexa & 0 & 6 & \\ 
+		\hline
+		\multirow{3}{*}{Arquivos Lógicos Internos} & \multirow{3}{*}{4} & Simples & 4 & 7 & \multirow{3}{*}{28}\\ 
+		\cline{3-5}
+		&  & Média & 0 & 10 & \\ 
+		\cline{3-5}
+		&  & Complexa & 0 & 15 & \\ 
+		\hline
+		\multirow{3}{*}{Arquivos de Interface Externa} & \multirow{3}{*}{10} & Simples & 10 & 5 & \multirow{3}{*}{50}\\ 
+		\cline{3-5}
+		&  & Média & 0 & 7 & \\ 
+		\cline{3-5}
+		&  & Complexa & 0 & 10 & \\ 
+		\hline
+		\multicolumn{5}{l}{PF Bruto} & 142\\ 
+		\hline
+	\hline\end{tabular}
+	\end{adjustwidth}
+	\caption{\small{Tabela do Passo 1}} 
+	\label{table:t3}
+\end{table}
+
+\paragraph{Observação} Para a criação e preenchimento da tabela acima, foi
+usada a seguinte lógica:
+\begin{itemize}[noitemsep]
+	\item Entradas Externas: Todas as classes que possuem atributo
+	\item Saídas Externas: 4 para a criação, remoção, atualização e remoção (CRUD); 2 para geração de relatório
+	\item Consultas Externas: \textit{consultarExtrato}, \textit{gerarRelatorio}
+	\item Arquivos Lógicos Internos: Classes \textit{proprietario}, \textit{veiculo}, \textit{tagRFID}, \textit{funcionario}
+	\item Arquivos de Interface Externa: Todas as classes que possuem atributo
+\end{itemize}
+
+\newpage %%
+
+Após a criação da tabela \ref{table:t3}, foi respondido o todo questionário
+presente em especificação, e chegamos aos seguintes pesos:
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{c c}
+		\hline\hline
+		Pergunta & Influência\\ 
+		\hline\hline 
+		1 & 5\\ 
+		\hline
+		2 & 3\\ 
+		\hline
+		3 & 1\\ 
+		\hline
+		4 & 5\\ 
+		\hline
+		5 & 0\\ 
+		\hline
+		6 & 5\\ 
+		\hline
+		7 & 1\\ 
+		\hline
+		8 & 4\\ 
+		\hline
+		9 & 2\\ 
+		\hline
+		10 & 2\\ 
+		\hline
+		11 & 2\\ 
+		\hline
+		12 & 1\\ 
+		\hline
+		13 & 4\\ 
+		\hline
+		14 & 5\\ 
+		\hline
+	\hline\end{tabular}
+	\caption{\small{Tabela do Passo 2}} 
+	\label{table:t4}
+\end{table}
+
+É, então, encontrado o fator de reajuste \textit{F} por meio de sua equação:
+\begin{equation}
+	F = 0,65 + 0,01 x \sum[setInfluences] = 1.05
+\end{equation}
+Onde \textit{setInfluences} é, claramente, o conjunto das influências
+apresentadas na tabela \ref{table:t4}. Obtemos então, o PF ajustado:
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{l | c c}
+		\hline\hline
+		\multicolumn{1}{c}{ } & Resultado & PF ajustado\\ 
+		\hline\hline
+		\multirow{3}{*}{Entradas Externas} & \multirow{3}{*}{30} & \multirow{3}{*}{31,5}\\ 
+		&  & \\ 
+		&  & \\ 
+		\hline
+		\multirow{3}{*}{Saídas Externas} & \multirow{3}{*}{26} & \multirow{3}{*}{27,3}\\ 
+		&  & \\ 
+		&  & \\ 
+		\hline
+		\multirow{3}{*}{Consultas Externas} & \multirow{3}{*}{8} & \multirow{3}{*}{8,4}\\ 
+		&  & \\ 
+		&  & \\ 
+		\hline
+		\multirow{3}{*}{Arquivos Lógicos Internos} & \multirow{3}{*}{28} & \multirow{3}{*}{29,4}\\ 
+		&  & \\ 
+		&  & \\ 
+		\hline
+		\multirow{3}{*}{Arquivos de Interface Externa} & \multirow{3}{*}{50} & \multirow{3}{*}{52,5}\\ 
+		&  & \\ 
+		&  & \\ 
+		\hline
+		\multicolumn{1}{l}{PF Bruto} & 142 & 149,1\\ 
+		\hline
+	\hline\end{tabular}
+	\caption{\small{Tabela do Passo 3}} 
+	\label{table:t5}
+\end{table}
+
+\newpage %%
+
+%-------------------------------------------------------------------------------
+%	COST, DOC & Quality
+%-------------------------------------------------------------------------------
+
+\section{Dedução de Custo, Documentação e Qualidade}\label{cdq}
+O Custo \textit{C} (Dólares), a Documentação \textit{D} (Páginas) e a
+Qualidade \textit{Q} (Unidades de erro) foram calculados tendo como base as
+fórmulas e valores hipotéticos apresentados em especificação:
+\begin{equation}
+	C = 23.0 * 149.1 = 3,429.3
+\end{equation}
+\begin{equation}
+	D = 6.0 * 149.1 = 894.6
+\end{equation}
+\begin{equation}
+	Q = 0.25 * 149.1 = 37.275
+\end{equation}
+
+\newpage %%
+
+%-------------------------------------------------------------------------------
+%	EFFORT, DEV TIME
+%-------------------------------------------------------------------------------
+
+\section{Esforço e Tempo de Desenvolvimento}\label{etd}
+Para os valores de esforço \textit{E} (Pessoas-Mês) e tempo de desenvolvimento
+\textit{T} (Meses), foram utilizadas as equações disponibilizadas em sala de
+aula (sabendo que será utilizado o modelo \textit{COCOMO Básico}, com a classe
+de projeto orgânico):
+\begin{equation}
+	E = 2.4 * 2.625^{1.05} = 6.61
+\end{equation}
+\begin{equation}
+	T = 2.5 * 6.61^{0.38} = 5.12
+\end{equation}
+
+\newpage %%
+
+%-------------------------------------------------------------------------------
+%	CONCLUSION
+%-------------------------------------------------------------------------------
+
+\section{Conclusão}
+Esta seção apresenta uma pequena inferência relativa aos objetivos propostos e
+declarações feitas na seção \ref{intro}.
+
+Os cálculos permitem fazer algumas presunções relativas ao projeto
+a ser encarado, mas a precisão é certamente questionável. O que se busca sempre
+é alguma garantia ou previsibilidade, e estes sempre são incertos. Uma abordagem
+quantitativa para análise de qualidade, em perspectiva, não faz muito sentido
+nem é tão satisfatória; não corresponde à realidade na maioria esmagadora dos
+casos, o que é razoável.
+
+Conclusões à respeito da qualidade de uma implantação são resultados de um
+processo árduo e trabalhoso. Métodos como ponto por função e
+\textit{Lines of Code}, sozinhos, não são respeitosos à qualidade real de um
+projeto.
+
+\end{document}
