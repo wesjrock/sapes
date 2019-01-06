@@ -19,6 +19,11 @@ ER-Model
 --------------------------------------------------
 ![Screenshot 1](ER-Model/T2-Passe-livre_MER.jpg)
 
+CREDITS
+--------------------------------------------------
+- Danilo Zecchin Nery
+- Jean Amaro
+- Wesley Tiozzo
 
 MORE INFO
 --------------------------------------------------
